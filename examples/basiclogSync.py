@@ -48,6 +48,7 @@ if __name__ == '__main__':
     # Scan for Crazyflies and use the first one found
     print('Scanning interfaces for Crazyflies...')
     available = cflib.crtp.scan_interfaces()
+    time.sleep(1)
     print('Crazyflies found:')
     for i in available:
         print(i[0])
@@ -74,3 +75,14 @@ if __name__ == '__main__':
 
                     if time.time() > endTime:
                         break
+    m1stash = np.asarray(m1stash)
+    m2stash = np.asarray(m2stash)
+    m3stash = np.asarray(m3stash)
+    m4stash = np.asarray(m4stash)
+    stampstash = np.asarray(stampstash)
+
+    plt.plot(stampstash,m1stash)
+    plt.plot(stampstash,m2stash)
+    plt.plot(stampstash,m3stash)
+    plt.plot(stampstash,m4stash)
+    plt.show()

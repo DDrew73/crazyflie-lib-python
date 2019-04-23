@@ -127,6 +127,7 @@ if __name__ == '__main__':
     # Scan for Crazyflies and use the first one found
     print('Scanning interfaces for Crazyflies...')
     available = cflib.crtp.scan_interfaces()
+    time.sleep(1)
     print('Crazyflies found:')
     for i in available:
         print(i[0])

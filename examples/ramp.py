@@ -107,11 +107,13 @@ if __name__ == '__main__':
     # Scan for Crazyflies and use the first one found
     print('Scanning interfaces for Crazyflies...')
     available = cflib.crtp.scan_interfaces()
+    time.sleep(0.25)
     print('Crazyflies found:')
     for i in available:
         print(i[0])
 
     if len(available) > 0:
         le = MotorRampExample(available[0][0])
+        time.sleep(0.25)
     else:
         print('No Crazyflies found, cannot run example')

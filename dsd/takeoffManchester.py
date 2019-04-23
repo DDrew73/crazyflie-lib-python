@@ -55,28 +55,36 @@ if __name__ == '__main__':
         cf.param.set_value('kalman.resetEstimation', '0')
         time.sleep(2)
 
-        for y in range(10):
-            cf.commander.send_hover_setpoint(0, 0, 0, y / 25)
-            time.sleep(0.1)
 
-        for _ in range(20):
-            cf.commander.send_hover_setpoint(0, 0, 0, 0.4)
-            time.sleep(0.1)
+        for x in range(10):
+            cf.commander.send_hover_setpoint(0,0,0,0.4)
+            time.sleep(0.2)
 
-        for _ in range(50):
-            cf.commander.send_hover_setpoint(0.5, 0, 36 * 2, 0.4)
-            time.sleep(0.1)
+        cf.param.set_value('proptalker.propAmp', '10000')
+        cf.param.set_value('propenablers.manEnable', '1')
 
-        for _ in range(50):
-            cf.commander.send_hover_setpoint(0.5, 0, -36 * 2, 0.4)
-            time.sleep(0.1)
+        time.sleep(5)
 
-        for _ in range(20):
-            cf.commander.send_hover_setpoint(0, 0, 0, 0.4)
-            time.sleep(0.1)
+        cf.param.set_value('propenablers.manEnable', '0')
+        cf.param.set_value('proptalker.propAmp', '0')
+
+        time.sleep(1)
 
         for y in range(10):
-            cf.commander.send_hover_setpoint(0, 0, 0, (10 - y) / 25)
+            cf.commander.send_hover_setpoint(0, 0, 0, (10-y) / 25)
+            time.sleep(0.1)
+
+        cf.commander.send_stop_setpoint()
+
+        exit()
+
+        for x in range(10):
+            cf.commander.send_hover_setpoint(0,0,0,0.6)
+            time.sleep(0.2)
+
+
+        for y in range(10):
+            cf.commander.send_hover_setpoint(0, 0, 0, (10-y) / 25)
             time.sleep(0.1)
 
         cf.commander.send_stop_setpoint()

@@ -40,6 +40,7 @@ TYPE_VELOCITY_WORLD = 1
 TYPE_ZDISTANCE = 2
 TYPE_HOVER = 5
 TYPE_POSITION = 7
+TYPE_BYPASS = 8
 
 
 class Commander():
@@ -141,4 +142,15 @@ class Commander():
         pk.port = CRTPPort.COMMANDER_GENERIC
         pk.data = struct.pack('<Bffff', TYPE_POSITION,
                               x, y, z, yaw)
+        self._cf.send_packet(pk)
+
+
+    def send_bypass_setpoint(self, m1, m2, m3, m4):
+        """
+        Control mode where the motor setpoints are sent directly (in form uint16)
+        """
+        pk = CRTPPacket()
+        pk.port = CRTPPort.COMMANDER_GENERIC
+        pk.data = struct.pack('<Bffff', TYPE_BYPASS,
+                              m1, m2, m3, m4)
         self._cf.send_packet(pk)
